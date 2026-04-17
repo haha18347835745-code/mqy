@@ -1,0 +1,51 @@
+<view class="container">
+  <view class="file-header">
+    <text class="file-title">{{title}}</text>
+    <view class="file-type-badge">
+      <text>{{typeText}}</text>
+    </view>
+  </view>
+
+  <view class="content-wrapper">
+    <block wx:if="{{isImage}}">
+      <view class="image-preview" bindtap="previewImage">
+        <image class="preview-image" src="{{fileID}}" mode="aspectFit"></image>
+      </view>
+    </block>
+    <block wx:else>
+      <view class="document-preview">
+        <view class="doc-icon-wrapper">
+          <text class="doc-icon-emoji">{{typeEmoji}}</text>
+        </view>
+        <text class="doc-name">{{title}}</text>
+      </view>
+    </block>
+  </view>
+
+  <view class="action-bar">
+    <block wx:if="{{isImage}}">
+      <button class="action-btn save-btn" bindtap="saveImage">
+        <text class="action-icon">💾</text>
+        <text class="action-text">保存到手机</text>
+      </button>
+    </block>
+    <block wx:else>
+      <button class="action-btn view-btn" bindtap="viewDocument">
+        <text class="action-icon">📖</text>
+        <text class="action-text">查看文档</text>
+      </button>
+      <button class="action-btn download-btn" bindtap="downloadDocument">
+        <text class="action-icon">📥</text>
+        <text class="action-text">下载</text>
+      </button>
+    </block>
+    <button class="action-btn share-btn" open-type="share">
+      <text class="action-icon">📤</text>
+      <text class="action-text">分享</text>
+    </button>
+    <button class="action-btn delete-btn" wx:if="{{isAdmin}}" bindtap="deleteFile">
+      <text class="action-icon">🗑️</text>
+      <text class="action-text">删除</text>
+    </button>
+  </view>
+</view>
